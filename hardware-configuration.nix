@@ -16,6 +16,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/cecb9e5e-4449-41a8-96be-20675499e360";
       fsType = "ext4";
+      label = "Root";
     };
 
   fileSystems."/boot" =
@@ -31,6 +32,7 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/1f5e61ef-f882-42d4-a4a9-e2490e4347e8";
       fsType = "ext4";
+      label = "Home";
     };
 
   swapDevices =
