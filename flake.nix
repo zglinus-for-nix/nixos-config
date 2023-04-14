@@ -11,7 +11,11 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, deploy-rs }:
+  outputs = { self, 
+  nixpkgs, 
+  nixpkgs-unstable, 
+  deploy-rs 
+  }:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
