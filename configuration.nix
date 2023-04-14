@@ -151,17 +151,21 @@ in
     ];
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
-    "nvidia-offload"
-    "nvidia-x11"
-    "nvidia-settings"
-    "clash-for-windows"
-    "obsidian"
-    "steam-run"
-    "steam-original"
-    "wpsoffice"
-  ];
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "vscode"
+      "nvidia-offload"
+      "nvidia-x11"
+      "nvidia-settings"
+      "clash-for-windows"
+      "obsidian"
+      "steam-run"
+      "steam-original"
+      "wpsoffice"
+      "vivaldi"
+      "widevine"
+    ];
+  };
 
 
   # List packages installed in system profile. To search, run:
@@ -187,6 +191,9 @@ in
     # obsidian
     meson
     filelight
+    vivaldi
+    vivaldi-widevine
+    vivaldi-ffmpeg-codecs
     (pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage /home/zgl/git/zglinus-s-NUR/pkgs/watt-toolkit/default.nix { })
