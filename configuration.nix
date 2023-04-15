@@ -125,7 +125,7 @@ in
       myproxy = {
         type = "socks5";
         host = "127.0.0.1";
-        port = 7890;
+        port = "7890";
       };
     };
   };
@@ -202,9 +202,9 @@ in
     # obsidian
     meson
     filelight
-    vivaldi
-    vivaldi-widevine
-    vivaldi-ffmpeg-codecs
+    # vivaldi
+    # vivaldi-widevine
+    # vivaldi-ffmpeg-codecs
     (pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage /home/zgl/git/zglinus-s-NUR/pkgs/watt-toolkit/default.nix { })
