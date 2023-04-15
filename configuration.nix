@@ -119,6 +119,17 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  programs.proxychains = {
+    enable = true;
+    proxies = {
+      myproxy = {
+        type = "socks5";
+        host = "127.0.0.1";
+        port = 7890;
+      };
+    };
+  };
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -191,9 +202,9 @@ in
     # obsidian
     meson
     filelight
-    vivaldi
-    vivaldi-widevine
-    vivaldi-ffmpeg-codecs
+    #vivaldi
+    #vivaldi-widevine
+    #vivaldi-ffmpeg-codecs
     (pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage /home/zgl/git/zglinus-s-NUR/pkgs/watt-toolkit/default.nix { })
