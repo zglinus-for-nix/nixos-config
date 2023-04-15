@@ -59,11 +59,11 @@
           "nixos" = {
             # 目标机器的地址，IP 或域名或 .ssh/config 中配置的别名均可
             hostname = "192.168.123.12";
-            profiles.system = {
+            profiles.hello = {
               profilePath = "/nix/var/nix/profiles/per-user/nix/system";
 
               # 调用上面的 nixosConfigurations."nixos"
-              path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."nixos";
+              path = deploy-rs.lib.x86_64-linux.setActivate nixpkgs.legacyPackages.x86_64-linux.hello "./bin/hello";
             };
           };
         };
