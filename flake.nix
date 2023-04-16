@@ -60,6 +60,7 @@
             # 目标机器的地址，IP 或域名或 .ssh/config 中配置的别名均可
             hostname = "nix";
             profiles.system = {
+              remoteBuild = true;
             # 调用上面的 nixosConfigurations."nixos"
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."nixos";
           };
