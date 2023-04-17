@@ -11,7 +11,6 @@
 while [ 1 ]
 do
     COMMIT=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
-    echo $COMMIT > donotpush/rev
     COMMITFILE=$(cat donotpush/rev)
     if [ $COMMIT != $COMMITFILE ]
     then
@@ -29,6 +28,7 @@ do
         OUTPUT=$(tr -cd "[:print:]\n" < ./donotpush/resultfile|base64)
         python dingdingbot.py $COMMIT $MESSAGE $OUTPUT
         echo "level 4" > /proc/acpi/ibm/fan
+        echo $COMMIT > donotpush/rev
     else
         echo "Nothing changes!"
     fi
