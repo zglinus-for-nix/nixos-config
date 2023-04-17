@@ -6,7 +6,7 @@ webhook = os.getenv('WEBHOOK')
 secret = os.getenv('SECRET')
 
 commitID = str(sys.argv[1])
-commitMessage = str(sys.argv[2])
+commitMessage = str(base64.b64decode(sys.argv[2]),'utf-8')
 result = str(base64.b64decode(sys.argv[3]),'utf-8')
 
 load5 = os.popen("cat /proc/loadavg | cut -b 6-10").read().strip()

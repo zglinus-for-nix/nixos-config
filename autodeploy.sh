@@ -15,6 +15,7 @@ do
     COMMITFILE=$(cat donotpush/rev)
     if [ $COMMIT != $COMMITFILE ]
     then
+        MESSAGE=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
         echo "level auto" > /proc/acpi/ibm/fan
         script
@@ -26,7 +27,7 @@ do
         RESULTFILE=$(sed -r "s/\x1B\[\?2004l//g"  donotpush/resultfile)
         echo $RESULTFILE > ./donotpush/resultfile
         OUTPUT=$(tr -cd "[:print:]\n" < ./donotpush/resultfile|base64)
-        python dingdingbot.py 1 2 $OUTPUT
+        python dingdingbot.py $COMMIT $MESSAGE $OUTPUT
         echo "level 4" > /proc/acpi/ibm/fan
     else
         echo "Nothing changes!"
