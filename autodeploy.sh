@@ -10,15 +10,15 @@
 
 while [ 1 ]
 do
-    COMMIT=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
+    COMMIT=$(curl -u $PAC https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
     COMMITFILE=$(cat donotpush/rev)
-    if [ 1 ]
+    if [ COMMIT!=COMMITFILE ]
     then
         MESSAGE=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
         echo "level auto" > /proc/acpi/ibm/fan
-        #nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
-        #sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
+        nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
+        sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
         linenum=`cat ./donotpush/logfile | wc -l`
         linenum_l3=`expr $linenum - 2`
         linenum_l2=`expr $linenum - 1`
@@ -29,7 +29,6 @@ do
         python dingdingbot.py $COMMIT $MESSAGE $OUTPUT1 $OUTPUT2 $OUTPUT3
         echo "level 4" > /proc/acpi/ibm/fan
         echo $COMMIT > donotpush/rev
-        exit
     else
         echo "Nothing changes!"
     fi
