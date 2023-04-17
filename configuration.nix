@@ -17,7 +17,7 @@ in
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./cfw.nix
+      #./cfw.nix
     ];
 
   # Bootloader.
