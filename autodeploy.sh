@@ -12,7 +12,7 @@ while [ 1 ]
 do
     COMMIT=$(curl -u $OAUTH https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
     COMMITFILE=$(cat donotpush/rev)
-    if [ COMMIT!=COMMITFILE ]
+    if [ $COMMIT != $COMMITFILE ]
     then
         MESSAGE=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
