@@ -188,6 +188,7 @@ in
     zsh-powerlevel10k
     powerline-fonts
     rnix-lsp
+    keepassxc
     # obsidian
     meson
     filelight
