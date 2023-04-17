@@ -18,10 +18,13 @@ do
         git pull origin
         echo "level auto" > /proc/acpi/ibm/fan
         nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
-        sed -i "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" ./donotpush/logfile
-        OUTPUT1=$(sed -n '3p' ./donotpush/logfile|base64)
-        OUTPUT2=$(sed -n '2p' ./donotpush/logfile|base64)
-        OUTPUT3=$(sed -n '1p' ./donotpush/logfile|base64)
+        sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
+        linenum=`cat /donotpush/logfile | wc -l`
+        linenum_l3=`expr $linenum - 3`
+        linenum_l2=`expr $linenum - 2`
+        OUTPUT1=$(sed -n ''"$linenum_l3"'p' /donotpush/logfile|base64)
+        OUTPUT2=$(sed -n ''"$linenum_l2"'p' /donotpush/logfile|base64)
+        OUTPUT3=$(cat ./donotpush/logfile|tail -n1|base64)
         python dingdingbot.py $COMMIT $MESSAGE $OUTPUT1 $OUTPUT2 $OUTPUT3
         echo "level 4" > /proc/acpi/ibm/fan
         echo $COMMIT > donotpush/rev
