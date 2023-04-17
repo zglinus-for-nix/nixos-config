@@ -12,7 +12,7 @@ while [ 1 ]
 do
     COMMIT=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
     COMMITFILE=$(cat donotpush/rev)
-    if [ $COMMIT != $COMMITFILE ]
+    if [ 1 ]
     then
         MESSAGE=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
@@ -28,6 +28,7 @@ do
         python dingdingbot.py $COMMIT $MESSAGE $OUTPUT1 $OUTPUT2 $OUTPUT3
         echo "level 4" > /proc/acpi/ibm/fan
         echo $COMMIT > donotpush/rev
+        exit
     else
         echo "Nothing changes!"
     fi
