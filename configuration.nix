@@ -192,6 +192,7 @@ in
     # obsidian
     meson
     filelight
+    libsForQt5.ark
     # vivaldi
     # vivaldi-widevine
     # vivaldi-ffmpeg-codecs
