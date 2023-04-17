@@ -22,6 +22,6 @@ systembot.send_markdown(title='NixOS 部署情况', text='#### '+ commitMessage 
                     '> ' + result1 + ' \n'
                     '> ' + result2 + ' \n'
                     '> ' + result3 + ' \n'
-                    '- time: ' + spend_time + 's, end at' + time.strftime("%H:%M:%S %Y-%m-%d", time.localtime())  +'  \n'
+                    '- time: ' + spend_time + 's, end at ' + time.strftime("%H:%M:%S %Y-%m-%d", time.localtime())  +'  \n'
                     '- load5: ' + load5 +'  \n')
                     
