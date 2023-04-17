@@ -9,5 +9,5 @@
 	- Environment variable:
 		- WEBHOOK: Dingding group bot webhook
 		- SERCET: Dingding group bot sercet
-		- PAC: Github personal access token with Github password in this format: `PAC:PASSWD`
+		- OAUTH: Github OAuth client ID with client secret in this format: `ID:secret`
 - I use `echo blah to /proc/acpi/ibm/fan` because I run it on a Ubuntu in a Thinkpad. If you use a different machine or a vm, please remove it.

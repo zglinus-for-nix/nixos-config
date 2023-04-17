@@ -10,7 +10,7 @@
 
 while [ 1 ]
 do
-    COMMIT=$(curl -u $PAC https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
+    COMMIT=$(curl -u $OAUTH https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
     COMMITFILE=$(cat donotpush/rev)
     if [ COMMIT!=COMMITFILE ]
     then
