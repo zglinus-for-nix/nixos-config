@@ -196,7 +196,7 @@ in
     # vivaldi
     # vivaldi-widevine
     # vivaldi-ffmpeg-codecs
-    (pkgs.callPackage ./user/cfw.nix { })
+    #(pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage ./user/watt-toolkit.nix { })
     (libsForQt5.callPackage ./user/latte-dock.nix { })
