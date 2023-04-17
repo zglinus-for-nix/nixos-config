@@ -20,8 +20,8 @@ do
         nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
         sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
         linenum=`cat ./donotpush/logfile | wc -l`
-        linenum_l3=`expr $linenum - 3`
-        linenum_l2=`expr $linenum - 2`
+        linenum_l3=`expr $linenum - 2`
+        linenum_l2=`expr $linenum - 1`
         OUTPUT1=$(sed -n ''"$linenum_l3"'p' ./donotpush/logfile|base64)
         OUTPUT2=$(sed -n ''"$linenum_l2"'p' ./donotpush/logfile|base64)
         OUTPUT3=$(cat ./donotpush/logfile|tail -n1|base64)
