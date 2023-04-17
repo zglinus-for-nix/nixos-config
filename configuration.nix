@@ -194,8 +194,8 @@ in
     filelight
     libsForQt5.ark
     vivaldi
-    vivaldi-widevine
-    vivaldi-ffmpeg-codecs
+    #vivaldi-widevine
+    #vivaldi-ffmpeg-codecs
     #(pkgs.callPackage ./user/cfw.nix { })
     #(pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage ./user/watt-toolkit.nix { })
