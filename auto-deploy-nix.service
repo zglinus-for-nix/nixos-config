@@ -1,0 +1,16 @@
+[Unit]
+Description = Auto Deploy Nix
+After = network.target
+
+[Service]
+WorkingDirectory = /home/nix/nixos-config
+ExecStart = /usr/bin/bash /home/nix/nixos-config/autodeploy.sh
+Environment=OAUTH=<YOURS HERE>
+Environment=PATH=/home/nix/.nix-profile/bin:/home/nix/.nix-profile/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Environment=WEBHOOK=<YOURS HERE>
+Environment=SECRET=<YOURS HERE>
+User = nix
+Group = nix
+
+[Install]
+WantedBy = multi-user.target
