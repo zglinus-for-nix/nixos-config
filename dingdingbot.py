@@ -10,7 +10,7 @@ commitMessage = str(base64.b64decode(sys.argv[2]),'utf-8')
 result1 = str(base64.b64decode(sys.argv[3]),'utf-8')
 result2 = str(base64.b64decode(sys.argv[4]),'utf-8')
 result3 = str(base64.b64decode(sys.argv[5]),'utf-8')
-spend_time = sys.argv[6]
+spend_time = str(sys.argv[6])
 
 load5 = os.popen("cat /proc/loadavg | cut -b 6-10").read().strip()
 
