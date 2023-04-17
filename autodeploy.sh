@@ -10,11 +10,11 @@
 
 while [ 1 ]
 do
-    COMMIT=$(curl -u $OAUTH https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
+    COMMIT=$(curl -s -u $OAUTH https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].sha")
     COMMITFILE=$(cat donotpush/rev)
     if [ $COMMIT != $COMMITFILE ]
     then
-        MESSAGE=$(curl https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
+        MESSAGE=$(curl -s https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
         echo "level auto" > /proc/acpi/ibm/fan
         nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
