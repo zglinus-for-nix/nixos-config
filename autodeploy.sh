@@ -17,9 +17,9 @@ do
         MESSAGE=$(curl -s https://api.github.com/repos/zglinus-for-nix/nixos-config/commits | jq -r ".[0].commit.message"|base64)
         git pull origin
         echo "level auto" > /proc/acpi/ibm/fan
-        start = $(date +%s)
+        start=$(date +%s)
         nix run github:serokell/deploy-rs -- -s . -- --print-build-logs > ./donotpush/logfile 2>&1
-        end = $(date +%s)
+        end=$(date +%s)
         sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
         linenum=`cat ./donotpush/logfile | wc -l`
         linenum_l3=`expr $linenum - 2`
