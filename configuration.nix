@@ -198,11 +198,13 @@ in
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
     #(pkgs.callPackage ./user/cfw.nix { })
-    #(pkgs.callPackage ./user/obsidian.nix { })
+    (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage ./user/watt-toolkit.nix { })
     (libsForQt5.callPackage ./user/latte-dock.nix { })
     (libsForQt5.callPackage ./user/wps.nix { })
     (pkgs.callPackage ./user/sddm.nix { })
+    (pkgs.callPackage ./user/vivaldi-widevine.nix { })
+    (pkgs.callPackage ./user/ffmpeg-codecs.nix { })
   ];
 
   fonts.fonts = [
