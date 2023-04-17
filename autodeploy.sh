@@ -24,7 +24,7 @@ do
         linenum_l2=`expr $linenum - 1`
         OUTPUT1=$(sed -n ''"$linenum_l3"'p' ./donotpush/logfile|base64)
         OUTPUT2=$(sed -n ''"$linenum_l2"'p' ./donotpush/logfile|base64)
-        OUTPUT3=$(cat ./donotpush/logfile|tail -n1|base64)
+        OUTPUT3=$(sed -n ''"$linenum"'p' ./donotpush/logfile|base64)
         python dingdingbot.py $COMMIT $MESSAGE $OUTPUT1 $OUTPUT2 $OUTPUT3
         echo "level 4" > /proc/acpi/ibm/fan
         echo $COMMIT > donotpush/rev
