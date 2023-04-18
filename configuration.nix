@@ -72,10 +72,6 @@ in
 
     # Enable networking
     networkmanager.enable = true;
-    hosts = {
-      "104.22.68.109" = [ "mimir.vivaldi.com" ];
-      "172.67.21.222" = [ "mimir.vivaldi.com" ];
-    };
   };
 
   # Set your time zone.
