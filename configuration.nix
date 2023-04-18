@@ -195,7 +195,7 @@ in
     filezilla
     libsForQt5.ark
     vivaldi
-    tigervnc
+    #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
     #(pkgs.callPackage ./user/cfw.nix { })
@@ -206,6 +206,7 @@ in
     (pkgs.callPackage ./user/sddm.nix { })
     (pkgs.callPackage ./user/vivaldi-widevine.nix { })
     (pkgs.callPackage ./user/ffmpeg-codecs.nix { })
+    (pkgs.callPackage ./user/tigervnc.nix { })
   ];
 
   fonts.fonts = [
