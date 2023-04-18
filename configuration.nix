@@ -192,6 +192,7 @@ in
     # obsidian
     meson
     filelight
+    filezilla
     libsForQt5.ark
     vivaldi
     tigervnc
