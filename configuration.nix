@@ -197,6 +197,7 @@ in
     filezilla
     libsForQt5.ark
     libsForQt5.kdenlive
+    mediainfo
     vivaldi
     #tigervnc
     #vivaldi-widevine
