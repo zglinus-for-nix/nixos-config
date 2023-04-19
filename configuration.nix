@@ -186,7 +186,7 @@ in
     simplescreenrecorder
     speedcrunch
     python310
-    python310Packages.pip
+    #python310Packages.pip
     xorg.xhost
     zsh-powerlevel10k
     powerline-fonts
