@@ -198,7 +198,9 @@ in
     filezilla
     libsForQt5.ark
     libsForQt5.kdenlive
+    libsForQt5.gwenview
     mediainfo
+    gimp-with-plugins
     vivaldi
     #tigervnc
     #vivaldi-widevine
