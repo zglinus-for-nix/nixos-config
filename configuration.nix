@@ -201,7 +201,7 @@ in
     libsForQt5.ark
     libsForQt5.kdenlive
     libsForQt5.gwenview
-    #libsForQt5.kdeconnect-kde
+    libsForQt5.kdeconnect-kde
     mediainfo
     gimp-with-plugins
     vivaldi
