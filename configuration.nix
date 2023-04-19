@@ -168,6 +168,7 @@ in
       "wpsoffice"
       "vivaldi"
       "widevine"
+      "unrar"
     ];
   };
 
@@ -205,6 +206,7 @@ in
     mediainfo
     gimp-with-plugins
     vivaldi
+    unrar
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
