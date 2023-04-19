@@ -196,6 +196,7 @@ in
     filelight
     filezilla
     libsForQt5.ark
+    libsForQt5.kdenlive
     vivaldi
     #tigervnc
     #vivaldi-widevine
