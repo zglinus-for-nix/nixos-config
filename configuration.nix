@@ -138,6 +138,8 @@ in
     #media-session.enable = true;
   };
 
+  services.flatpak.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -199,7 +201,7 @@ in
     libsForQt5.ark
     libsForQt5.kdenlive
     libsForQt5.gwenview
-    libsForQt5.kdeconnect-kde
+    #libsForQt5.kdeconnect-kde
     mediainfo
     gimp-with-plugins
     vivaldi
