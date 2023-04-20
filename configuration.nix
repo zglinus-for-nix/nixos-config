@@ -210,6 +210,7 @@ in
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
+    neofetch
     #(pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage ./user/watt-toolkit.nix { })
