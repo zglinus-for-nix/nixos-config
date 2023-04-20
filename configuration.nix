@@ -169,6 +169,7 @@ in
       "vivaldi"
       "widevine"
       "unrar"
+      "qq"
     ];
   };
 
