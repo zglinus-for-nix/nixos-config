@@ -207,6 +207,7 @@ in
     gimp-with-plugins
     vivaldi
     unrar
+    qq
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
