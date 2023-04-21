@@ -13,6 +13,8 @@ result3 = str(base64.b64decode(sys.argv[5]),'utf-8')
 spend_time = str(sys.argv[6])
 
 load5 = os.popen("cat /proc/loadavg | cut -b 6-10").read().strip()
+load = str(sys.argv[7])
+
 
 systembot = DingtalkChatbot(webhook, secret=secret)
 t = time.localtime()
@@ -23,5 +25,5 @@ systembot.send_markdown(title='NixOS 部署情况', text='#### '+ commitMessage 
                     '> ' + result2 + ' \n'
                     '> ' + result3 + ' \n'
                     '- time: ' + spend_time + 's, end at ' + time.strftime("%H:%M:%S %Y-%m-%d", time.localtime())  +'  \n'
-                    '- load5: ' + load5 +'  \n')
+                    '- load5: ' + load + "; " + load5 +'  \n')
                     
