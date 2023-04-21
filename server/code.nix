@@ -14,6 +14,10 @@
     ];
   };
 
+  fileSystems."/home/code/codebase" =
+    {
+      mountPoint = "/data/Codebase";
+    };
   services.code-server = {
     enable = false;
     user = "code";
