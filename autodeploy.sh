@@ -25,7 +25,7 @@ do
         end=$(date +%s)
         load2=$(cat /proc/loadavg | cut -b 11-15)
         SPEND=`expr $end - $start`
-        LOAD=$(python $load1 $load2 $SPEND)
+        LOAD=$(python load.py $load1 $load2 $SPEND)
         sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2}(;[0-9]{1,2})?)?)?[m|K]//g" ./donotpush/logfile
         linenum=`cat ./donotpush/logfile | wc -l`
         linenum_l3=`expr $linenum - 2`
