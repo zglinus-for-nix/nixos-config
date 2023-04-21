@@ -288,14 +288,16 @@ in
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [  
-    1714 1715
-  ];
-  networking.firewall.allowedUDPPorts = [  
-    1714 1715
-  ];
+  # networking.firewall.allowedTCPPorts = [  ];
+  # networking.firewall.allowedUDPPorts = [  ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall.extraCommands = [
+    "iptables -I INPUT -p udp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
+    "iptables -I INPUT -p tcp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
+    "iptables -A OUTPUT -p udp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
+    "iptables -A OUTPUT -p tcp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
