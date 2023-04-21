@@ -209,12 +209,14 @@ in
     gimp-with-plugins
     vivaldi
     unrar
-    wine-staging q4wine
+    wine-staging
+    q4wine
     stlink-gui
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
     neofetch
+    unstable.motrix
     #(pkgs.callPackage ./user/cfw.nix { })
     (pkgs.callPackage ./user/obsidian.nix { })
     #(pkgs.callPackage ./user/watt-toolkit.nix { })
