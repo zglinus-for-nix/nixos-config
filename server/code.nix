@@ -16,7 +16,8 @@
 
   fileSystems."/home/code/codebase" =
     {
-      mountPoint = "/data/Codebase";
+      device = "/data/Codebase";
+      options = [ "bind" ];
     };
   services.code-server = {
     enable = false;
