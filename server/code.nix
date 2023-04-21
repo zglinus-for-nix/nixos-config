@@ -2,6 +2,7 @@
 
 {
   users.users.code = {
+    group = "code";
     password = "Z@gl2001code";
     isNormalUser = true;
     description = "vscode";
