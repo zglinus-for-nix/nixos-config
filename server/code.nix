@@ -10,7 +10,7 @@
     homeMode = "777";
     extraGroups = [ "networkmanager" "wheel" "docker" "code-server" ];
     packages = with pkgs; [
-      unstable.code-server
+      unstable.nodejs-16_x
     ];
   };
 
