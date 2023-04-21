@@ -209,6 +209,7 @@ in
     vivaldi
     unrar
     wine-staging q4wine
+    stlink-gui
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
