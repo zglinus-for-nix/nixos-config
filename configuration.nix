@@ -293,10 +293,10 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall.extraCommands = [
-    "iptables -I INPUT -p udp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
-    "iptables -I INPUT -p tcp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
-    "iptables -A OUTPUT -p udp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
-    "iptables -A OUTPUT -p tcp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
+    "iptables -I INPUT -p udp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT 
+    && iptables -I INPUT -p tcp --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+    && iptables -A OUTPUT -p udp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+    && iptables -A OUTPUT -p tcp --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT"
   ];
 
   # This value determines the NixOS release from which the default
