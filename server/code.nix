@@ -12,7 +12,7 @@
   };
 
   services.code-server = { 
-    enable = true;
+    enable = false;
     user = "code";
   };
 }
