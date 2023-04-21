@@ -208,6 +208,7 @@ in
     gimp-with-plugins
     vivaldi
     unrar
+    wine-staging q4wine
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
