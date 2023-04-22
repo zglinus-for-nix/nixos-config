@@ -19,8 +19,6 @@
 , ...
 } @ args:
 
-let pkgs = import <nixpkgs> { system = "i686-linux"; }; in
-
 stdenv.mkDerivation rec {
   pname = "deepin-wine";
   version = "5.0.16";
