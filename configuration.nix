@@ -227,7 +227,7 @@ in
     (pkgs.callPackage ./user/ffmpeg-codecs.nix { })
     (pkgs.callPackage ./user/tigervnc.nix { })
     (pkgs.callPackage ./user/qq.nix { })
-    (let pkgs = import <nixpkgs> { system = "i686-linux"; }; in(pkgs.callPackage ./user/wine/default.nix { }))
+    (let pkgs = pkgs { system = "i686-linux"; }; in(pkgs.callPackage ./user/wine/default.nix { }))
     #(pkgs.callPackage ./user/xx.nix { })
   ] ;
 
