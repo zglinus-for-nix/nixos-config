@@ -1,4 +1,4 @@
-{ stdenv
+{ pkgsi686Linux
 , fetchurl
 , autoPatchelfHook
 , makeWrapper
@@ -7,7 +7,7 @@
 , ...
 } @ args:
 
-stdenv.mkDerivation rec {
+pkgsi686Linux.stdenv.mkDerivation rec {
   pname = "cryus-sasl2";
   version = "2.1.27.1";
   src = fetchurl {

@@ -1,15 +1,13 @@
-{ stdenv
+{ pkgsi686Linux
 , fetchurl
 , autoPatchelfHook
 , makeWrapper
 , lib
 , callPackage
-, dbus
-, libnl
 , ...
 } @ args:
 
-stdenv.mkDerivation rec {
+pkgsi686Linux.stdenv.mkDerivation rec {
   pname = "libpcap";
   version = "1.10.3";
   src = fetchurl {
@@ -20,8 +18,8 @@ stdenv.mkDerivation rec {
   # autoPatchelfHook 可以自动修改二进制文件
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
   buildInputs = [
-    dbus
-    libnl
+    pkgsi686Linux.dbus
+    pkgsi686Linux.libnl
   ];
 
   outputs = [ "out" ];

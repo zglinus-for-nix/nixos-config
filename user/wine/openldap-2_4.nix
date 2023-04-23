@@ -1,14 +1,13 @@
-{ stdenv
+{ pkgsi686Linux
 , fetchurl
 , autoPatchelfHook
 , makeWrapper
 , lib
 , callPackage
-, gnutls
 , ...
 } @ args:
 
-stdenv.mkDerivation rec {
+pkgsi686Linux.stdenv.mkDerivation rec {
   pname = "libldep";
   version = "2.4.47";
   src = fetchurl {
@@ -19,7 +18,7 @@ stdenv.mkDerivation rec {
   # autoPatchelfHook 可以自动修改二进制文件
   nativeBuildInputs = [ autoPatchelfHook ];
   buildInputs = [
-    gnutls
+    pkgsi686Linux.gnutls
     (callPackage ./cryus-sasl2.nix { })
   ];
 

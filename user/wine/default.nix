@@ -1,25 +1,14 @@
-{ stdenv
+{ pkgsi686Linux
 , fetchurl
 , autoPatchelfHook
 , lib
 , callPackage
-, libxml2
-, gst_all_1
-, xorg
-, libusb1
-, systemd
-, udis86
-, pulseaudio
-, libgphoto2
-, ocl-icd
-, openal
-, alsa-lib
-, mpg123
-, lcms2
 , ...
 } @ args:
 
-stdenv.mkDerivation rec {
+let pkgs = import <nixpkgs> { system = "i686-linux"; }; in
+
+pkgsi686Linux.stdenv.mkDerivation rec {
   pname = "deepin-wine";
   version = "5.0.16";
   pkgver = "5.0.16";
@@ -36,6 +25,10 @@ stdenv.mkDerivation rec {
   # autoPatchelfHook 可以自动修改二进制文件
   nativeBuildInputs = [ autoPatchelfHook ];
   buildInputs = [
+    (callPackage ./openldap-2_4.nix { })
+    (callPackage ./vkd3d.nix { })
+    (callPackage ./libpcap.nix { })
+  ] ++ (with pkgsi686Linux; [
     libxml2
     libusb1
     systemd
@@ -49,10 +42,7 @@ stdenv.mkDerivation rec {
     alsa-lib
     gst_all_1.gst-plugins-base
     xorg.libX11
-    (callPackage ./openldap-2_4.nix { })
-    (callPackage ./vkd3d.nix { })
-    (callPackage ./libpcap.nix { })
-  ];
+  ]);
 
   unpackPhase = ''
     ar x ${src}

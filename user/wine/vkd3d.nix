@@ -1,4 +1,4 @@
-{ stdenv
+{ pkgsi686Linux
 , fetchurl
 , autoPatchelfHook
 , makeWrapper
@@ -7,7 +7,7 @@
 , ...
 } @ args:
 
-stdenv.mkDerivation rec {
+pkgsi686Linux.stdenv.mkDerivation rec {
   pname = "libvkd3d";
   version = "1.6.1";
   src = fetchurl {
