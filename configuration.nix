@@ -209,6 +209,7 @@ in
     gimp-with-plugins
     vivaldi
     unrar
+    p7zip
     wine-staging
     q4wine
     stlink-gui

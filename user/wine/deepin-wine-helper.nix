@@ -27,6 +27,7 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     mkdir -p $out/bin
     cp -r opt/deepinwine/tools/* $out/bin
     sed -i "s|/opt/apps/.*/files|\$\{OUTPATH\}/files|g" $out//bin/*
+    sed -i "s|/opt/deepinwine/tools|$out/bin|g" $out//bin/*
   '';
 
   meta = {
