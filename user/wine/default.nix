@@ -21,6 +21,10 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     url = "https://community-store-packages.deepin.com/appstore/pool/appstore/d/deepin-wine5/deepin-wine5-i386_${pkgver}-${pkgrel}_i386.deb";
     sha256 = "sha256-6j81RDhIOg+PSOAVkFvFKkGgbW/yeRDItx8i9/siO98=";
   };
+  freetype = fetchurl {
+    url = "http://ftp.cn.debian.org/debian/pool/main/f/freetype/libfreetype6_2.12.1+dfsg-4_i386.deb";
+    sha256 = "sha256-xHurVoqKLpXy2EX7aWpbPrSWUtmx/f0ULFN0nxV5u/4=";
+  };
 
   # autoPatchelfHook 可以自动修改二进制文件
   nativeBuildInputs = [ autoPatchelfHook ];
@@ -29,9 +33,10 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     (callPackage ./vkd3d.nix { })
     (callPackage ./libpcap.nix { })
   ] ++ (with pkgsi686Linux; [
-    freetype
     libxml2
     libusb1
+    brotli
+    libpng
     systemd
     udis86
     pulseaudio
@@ -49,8 +54,9 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     ar x ${src}
     tar xf data.tar.xz
     ar x ${src32}
-    tar xf data.tar.xz
-
+    tar xf data.tar.xz  
+    ar x ${freetype}
+    tar xf data.tar.xz  
   '';
 
   installPhase = ''
