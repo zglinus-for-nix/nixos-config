@@ -29,6 +29,7 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     (callPackage ./vkd3d.nix { })
     (callPackage ./libpcap.nix { })
   ] ++ (with pkgsi686Linux; [
+    freetype
     libxml2
     libusb1
     systemd
