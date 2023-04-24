@@ -229,7 +229,7 @@ in
     (pkgs.callPackage ./user/ffmpeg-codecs.nix { })
     (pkgs.callPackage ./user/tigervnc.nix { })
     #(pkgs.callPackage ./user/qq.nix { })
-    (pkgs.callPackage ./user/wine/default.nix { })
+    #(pkgs.callPackage ./user/wine/default.nix { })
     #(pkgs.callPackage ./user/wine/deepin-wine-helper.nix { })
     #(pkgs.callPackage ./user/xx.nix { })
   ] ;
