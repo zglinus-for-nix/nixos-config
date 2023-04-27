@@ -88,7 +88,7 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     " "$out/files/run.sh"
     sed -i "
       s|/opt/apps/com.qq.weixin.deepin/files|$out/files|
-      s|wine6|wine5|
+      s|Wine6|Wine5|
     " "$out/share/applications/com.qq.weixin.deepin.desktop"
   '';
 }
