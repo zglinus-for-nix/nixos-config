@@ -11,8 +11,9 @@
 		- SERCET: Dingding group bot sercet
 		- OAUTH: Github OAuth client ID with client secret in this format: `ID:secret`
 - I use `echo blah to /proc/acpi/ibm/fan` because I run it on a Ubuntu in a Thinkpad. If you use a different machine or a vm, please remove it.
-### Acknowledgement
+### Acknowledgements
 - [Wuhan Deepin Technology Co.,Ltd.](http://www.deepin.org/)
 - [deepin-wine-wechat-arch](https://github.com/vufa/deepin-wine-wechat-arch) by [vufa](https://github.com/vufa)
 - [deepin-wine-tim-arch](https://github.com/vufa/deepin-wine-tim-arch) by [vufa](https://github.com/vufa)
+- [deploy-rs](https://github.com/serokell/deploy-rs)
 - [nixpkgs](https://github.com/NixOS/nixpkgs)
