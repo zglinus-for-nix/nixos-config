@@ -232,6 +232,7 @@ in
     (pkgs.callPackage ./user/wine/default.nix { })
     (pkgs.callPackage ./user/wine/deepin-wine-helper.nix { })
     (pkgs.callPackage ./user/wine/deepin-wine5-wechat.nix { })
+    (pkgs.callPackage ./user/wine/deepin-wine5-tim.nix { })
     #(pkgs.callPackage ./user/xx.nix { })
   ] ;
 
