@@ -210,8 +210,9 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     cp -r lib32*/usr/lib32/* $out/lib/i386-linux-gnu
     ln -s $out/lib/i386-linux-gnu/libpcap.so.1.10.3 $out/lib/i386-linux-gnu/libpcap.so.0.8
     mv $out/bin/* $out/exec
-    sed -i "s|/usr/|$out/|g" $out//exec/deepin-wine*
-    sed -i "s|/usr/|$out/|g" $out//lib/deepin-wine5/wineapploader
+    sed -i "s|/usr/|$out/|g" $out/exec/deepin-wine*
+    sed -i "s|/usr/|$out/|g" $out/lib/deepin-wine5/wineapploader
+    sed -i "s|/usr/|$out/|g" $out/lib/i386-linux-gnu/deepin-wine5/wine*
     for var in `ls $out/exec/`;
       do makeWrapper $out/exec/$var $out/bin/$var \
         --argv0 "$var" \
