@@ -210,13 +210,30 @@ pkgsi686Linux.stdenv.mkDerivation rec {
     cp -r lib32*/usr/lib32/* $out/lib/i386-linux-gnu
     ln -s $out/lib/i386-linux-gnu/libpcap.so.1.10.3 $out/lib/i386-linux-gnu/libpcap.so.0.8
     mv $out/bin/* $out/exec
-    sed -i "s|/usr/|$out/|g" $out//exec/deepin-wine*
-    sed -i "s|/usr/|$out/|g" $out//lib/deepin-wine5/wineapploader
+    sed -i "s|/usr/|$out/|g" $out/exec/deepin-wine*
+    sed -i "s|/usr/|$out/|g" $out/lib/deepin-wine5/wineapploader
+    sed -i "s|/usr/|$out/|g" $out/lib/i386-linux-gnu/deepin-wine5/wine*
     for var in `ls $out/exec/`;
       do makeWrapper $out/exec/$var $out/bin/$var \
         --argv0 "$var" \
         --prefix LD_LIBRARY_PATH : "$out/lib:${lib.makeLibraryPath libraries}"
     done
+    mv $out/lib/deepin-wine5/wine $out/exec
+    mv $out/lib/deepin-wine5/wine-preloader $out/exec
+    rm $out/lib/i386-linux-gnu/deepin-wine5/wine
+    rm $out/lib/i386-linux-gnu/deepin-wine5/wine-preloader
+    makeWrapper $out/exec/wine $out/lib/deepin-wine5/wine \
+        --argv0 "wine" \
+        --prefix LD_LIBRARY_PATH : "$out/lib:${lib.makeLibraryPath libraries}"
+    makeWrapper $out/exec/wine-preloader $out/lib/deepin-wine5/wine-preloader \
+        --argv0 "wine-preloader" \
+        --prefix LD_LIBRARY_PATH : "$out/lib:${lib.makeLibraryPath libraries}"
+    makeWrapper $out/exec/wine $out/lib/i386-linux-gnu/deepin-wine5/wine \
+        --argv0 "wine" \
+        --prefix LD_LIBRARY_PATH : "$out/lib:${lib.makeLibraryPath libraries}"
+    makeWrapper $out/exec/wine-preloader $out/lib/i386-linux-gnu/deepin-wine5/wine-preloader \
+        --argv0 "wine-preloader" \
+        --prefix LD_LIBRARY_PATH : "$out/lib:${lib.makeLibraryPath libraries}"
   '';
 
   meta = {
