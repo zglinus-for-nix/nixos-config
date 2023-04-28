@@ -211,9 +211,7 @@ in
     vivaldi
     unrar
     p7zip
-    wine-staging
-    q4wine
-    winetricks
+    #wine-staging q4wine winetricks
     stlink-gui
     #tigervnc
     #vivaldi-widevine
