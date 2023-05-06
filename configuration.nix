@@ -213,6 +213,7 @@ in
     p7zip
     wine-staging q4wine winetricks
     stlink-gui
+    piper
     #tigervnc
     #vivaldi-widevine
     #vivaldi-ffmpeg-codecs
