@@ -2,78 +2,28 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-in
+{ config, pkgs, ... }:
+
 {
   imports =
-    [
-      # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./server/code.nix
-      #./cfw.nix
     ];
 
   # Bootloader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot/efi"; # 默认是 /boot，重点就是改这里
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-    grub = {
-      enable = true;
-      device = "nodev";
-      default = "1"; # 从0计数
-      efiSupport = true;
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-      # osprober 会自动检测 windows 或其它系统并生成配置
-      # 经常输出无关信息，我现在不用了
-      #useOSProber = true;
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-      # 不用 osprober，自己手动添加启动项
-      extraEntries = ''
-        menuentry "Windows" {
-         search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
-         chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
-    };
-  };
-
-  boot.supportedFilesystems = [ "ntfs" ];
-  fileSystems."/data" =
-    {
-      device = "/dev/disk/by-uuid/EAD76BE3764DDD03";
-      fsType = "ntfs";
-    };
-
-  nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-
-  networking = {
-    hostName = "nixos"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
-    networkmanager.enable = true;
-  };
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -93,25 +43,12 @@ in
     LC_TIME = "zh_CN.UTF-8";
   };
 
-
-
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-gtk
-      fcitx5-lua
-    ];
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.enableTCP = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.sddm.theme = "sugar-candy";
 
   # Configure keymap in X11
   services.xserver = {
@@ -139,8 +76,6 @@ in
     #media-session.enable = true;
   };
 
-  services.flatpak.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -148,137 +83,25 @@ in
   users.users.zgl = {
     isNormalUser = true;
     description = "zgl";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
       kate
-      #  thunderbird
+    #  thunderbird
     ];
   };
 
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "vscode"
-      "nvidia-offload"
-      "nvidia-x11"
-      "nvidia-settings"
-      "clash-for-windows"
-      "obsidian"
-      "steam-run"
-      "steam-original"
-      "wpsoffice"
-      "vivaldi"
-      "widevine"
-      "unrar"
-      "qq"
-    ];
-  };
-
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    vscode
-    python2Full 
-    nvidia-offload
-    zsh
-    git
-    git-lfs
-    nodejs
-    ffmpeg
-    vlc
-    simplescreenrecorder
-    speedcrunch
-    python310
-    #python310Packages.pip
-    xorg.xhost
-    zsh-powerlevel10k
-    powerline-fonts
-    rnix-lsp
-    keepassxc
-    # obsidian
-    meson
-    filelight
-    filezilla
-    libsForQt5.ark
-    libsForQt5.kdenlive
-    libsForQt5.gwenview
-    libsForQt5.kdeconnect-kde
-    mediainfo
-    gimp-with-plugins
-    vivaldi
-    unrar
-    p7zip
-    wine-staging q4wine winetricks
-    stlink-gui
-    piper
-    #tigervnc
-    #vivaldi-widevine
-    #vivaldi-ffmpeg-codecs
-    neofetch
-    unstable.motrix
-    #(pkgs.callPackage ./user/cfw.nix { })
-    (pkgs.callPackage ./user/obsidian.nix { })
-    #(pkgs.callPackage ./user/watt-toolkit.nix { })
-    (libsForQt5.callPackage ./user/latte-dock.nix { })
-    (libsForQt5.callPackage ./user/wps.nix { })
-    (pkgs.callPackage ./user/sddm.nix { })
-    (pkgs.callPackage ./user/vivaldi-widevine.nix { })
-    (pkgs.callPackage ./user/ffmpeg-codecs.nix { })
-    (pkgs.callPackage ./user/tigervnc.nix { })
-    #(pkgs.callPackage ./user/qq.nix { })
-    (pkgs.callPackage ./user/wine/default.nix { })
-    (pkgs.callPackage ./user/wine/deepin-wine-helper.nix { })
-    (pkgs.callPackage ./user/wine/deepin-wine5-wechat.nix { })
-    (pkgs.callPackage ./user/wine/deepin-wine5-tim.nix { })
-    #(pkgs.callPackage ./user/xx.nix { })
-  ] ;
-
-  fonts.fonts = [
-    (pkgs.callPackage ./user/fonts.nix { })
+  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  git
+  git-lfs
+  #  wget
   ];
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.prime = {
-    offload.enable = true;
-
-    # Bus ID of the AMD GPU. You can find it using lspci, either under 3D or VGA
-    amdgpuBusId = "PCI:6:0:0";
-
-    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-    nvidiaBusId = "PCI:1:0:0";
-
-  };
-  hardware.nvidia.forceFullCompositionPipeline = true;
-
-  # Bluetooth setting
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  hardware.pulseaudio.extraConfig = "
-  load-module module-switch-on-connect
-  ";
-
-  # zsh setting
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-  };
-
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "python" "man" ];
-  };
-  programs.zsh.ohMyZsh.custom = "~/.config/zsh/scripts";
-  users.users.zgl.shell = pkgs.zsh;
-
-
-  virtualisation.docker = {
-    enable = true;
-  };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -291,13 +114,13 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [  ];
-  # networking.firewall.allowedUDPPorts = [  ];
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
